@@ -5,9 +5,19 @@ export default function TaskList({ tasks, onDelete }) {
   return (
     <ul className="list">
       {/* Task 2 – Display Placeholder if No Tasks Yet */}
-
-      {/* Task 2 & 3 – Map tasks to TaskItem */}
-      
+      {tasks.length === 0 ? (
+        <li className="empty">No tasks yet.</li>
+      ) : (
+        // Task 2 & 3 – Map tasks to TaskItem
+        tasks.map((task) => (
+          <TaskItem
+            key={task.id}
+            id={task.id}
+            text={task.text}
+            onDelete={onDelete}
+          />
+        ))
+      )}
     </ul>
   );
 }
