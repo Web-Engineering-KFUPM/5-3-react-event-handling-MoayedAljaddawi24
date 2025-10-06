@@ -2,15 +2,21 @@ import React, { useState } from "react";
 import TaskList from "./TaskList";
 
 export default function TaskApp() {
-  
+  const [text, setText] = useState("");       
+  const [tasks, setTasks] = useState([]);     
+
   const handleSubmit = () => {
-   
+   const trimmed = text.trim();
+    if (!trimmed) return;
+
+    setTasks(prev => [...prev, { id: Date.now(), text: trimmed }])
+    setText("");
   };
 
   
   const handleDelete = (id) => {
     // TODO: filter tasks by id to remove the clicked one
-    setTasks(tasks.filter(t => t.id !== id));
+    setTasks((prev) => prev.filter(t => t.id !== id));
   };
 
   
